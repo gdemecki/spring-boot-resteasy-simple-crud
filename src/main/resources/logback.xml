@@ -1,0 +1,22 @@
+<configuration scan="true" scanPeriod="3 minutes">
+  <contextListener class="ch.qos.logback.classic.jul.LevelChangePropagator" />
+
+  <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <file>default.log</file>
+    <encoder>
+      <pattern>%date{HH:mm:ss.SSS} %-5level | %logger | %msg%n</pattern>
+    </encoder>
+  </appender>
+
+  <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+    <encoder>
+      <pattern>%date{HH:mm:ss.SSS} %-5level | %logger{60} | %msg%n</pattern>
+    </encoder>
+  </appender>
+
+  <logger name="com.gdemecki.crudtask" level="INFO" />
+
+  <root level="INFO">
+    <appender-ref ref="STDOUT" />
+  </root>
+</configuration> 
