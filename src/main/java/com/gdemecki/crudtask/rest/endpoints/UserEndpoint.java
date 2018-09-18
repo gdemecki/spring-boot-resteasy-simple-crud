@@ -22,6 +22,7 @@ import org.springframework.stereotype.Component;
 
 import com.gdemecki.crudtask.Validate;
 import com.gdemecki.crudtask.domain.User;
+import com.gdemecki.crudtask.dto.UserDTO;
 import com.gdemecki.crudtask.service.UserService;
 
 @Path("/users")
@@ -40,11 +41,12 @@ public class UserEndpoint {
     }
 
     @POST
-    public Response create(@Valid User user) {
-        Validate.notNull(user, "Empty request is not allowed");
+    public Response create(@Valid UserDTO userDto) {
+        Validate.notNull(userDto, "Empty request is not allowed");
+        logger.debug("Got a new user dto: {}", userDto);
 
-        user.setId(null);
-        user = userService.createUser(user);
+        userDto.setId(null);
+        User user = userService.createUser(userDto.toModel());
 
         logger.info("Created a new user: {}", user);
 
