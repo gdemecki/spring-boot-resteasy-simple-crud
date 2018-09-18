@@ -26,6 +26,11 @@ public class ResponseEntity {
             return this;
         }
 
+        public Builder addErrors(List<String> errors) {
+            resp.errors = errors;
+            return this;
+        }
+
         public ResponseEntity build() {
             return resp;
         }
